@@ -35,10 +35,10 @@ runner = dict(_delete_=True, type='IterBasedRunner', max_iters=10000)
 checkpoint_config = dict(interval=1000)
 
 data = dict(samples_per_gpu=3)
-optimizer = dict(type='SGD', 
-                 lr=0.001,
-                 momentum=0.9,
-                 weight_decay=0.0001)
+# optimizer = dict(type='SGD', 
+#                  lr=0.001,
+#                  momentum=0.9,
+#                  weight_decay=0.0001)
 optimizer_config = dict(_delete_=True, grad_clip=dict(max_norm=5, norm_type=2))
 
 log_config = dict(interval=1) # print log every inter (included loss value)
