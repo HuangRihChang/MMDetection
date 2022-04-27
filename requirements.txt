@@ -1,6 +1,6 @@
 torch
 torchvision
 mmcv-full
-mmdet
+mmdet==2.23.0
 Pillow==7.0.0
 tqdm

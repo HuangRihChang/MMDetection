@@ -7,7 +7,7 @@ from mmcv.runner import BaseModule, ModuleList
 
 from mmdet.models.backbones.resnet import Bottleneck
 from mmdet.models.builder import HEADS
-from mmdet.model.bbox_head import BBoxHead
+from mmdet.models.roi_heads.bbox_heads import BBoxHead
 
 
 class BasicResBlock(BaseModule):

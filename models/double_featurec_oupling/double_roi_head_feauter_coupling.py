@@ -1,5 +1,5 @@
 from mmdet.models.builder import HEADS
-from mmdet.models.standard_roi_head import StandardRoIHead
+from mmdet.models.roi_heads.standard_roi_head import StandardRoIHead
 
 
 @HEADS.register_module()
