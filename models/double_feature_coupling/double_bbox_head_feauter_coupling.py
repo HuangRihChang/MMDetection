@@ -192,9 +192,12 @@ class DoubleFeatureCouplingBBoxHead(BBoxHead):
         x_fc = x_cls.view(x_cls.size(0), -1)
         x_conv = self.res_block(x_reg)
 
-        for conv, fc in zip(self.conv_branch, self.fc_branch):
+        for conv in self.conv_branch:
             x_conv = conv(x_conv)
+        
+        for fc in self.fc_branch:
             x_fc = self.relu(fc(x_fc))
+        
         x_fc, x_conv = self.feature_coupling_block(x_fc, x_conv)
 
         #get output
