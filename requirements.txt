@@ -1,0 +1,6 @@
+torch
+torchvision
+mmcv-full
+mmdet
+Pillow==7.0.0
+tqdm
