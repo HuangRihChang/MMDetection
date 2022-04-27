@@ -195,7 +195,7 @@ class DoubleFeatureCouplingBBoxHead(BBoxHead):
         for conv, fc in zip(self.conv_branch, self.fc_branch):
             x_conv = conv(x_conv)
             x_fc = self.relu(fc(x_fc))
-            x_fc, x_conv = self.feature_coupling_block(x_fc, x_conv)
+        x_fc, x_conv = self.feature_coupling_block(x_fc, x_conv)
 
         #get output
         if self.with_avg_pool:
