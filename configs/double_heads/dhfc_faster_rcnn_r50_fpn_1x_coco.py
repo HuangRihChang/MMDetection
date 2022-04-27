@@ -1,7 +1,7 @@
 custom_imports = dict(
     imports=[
-        'models.double_featurec_oupling.double_roi_head_feauter_coupling',
-        'models.double_featurec_oupling.double_bbox_head_feauter_coupling',
+        'models.double_feature_coupling.double_roi_head_feauter_coupling',
+        'models.double_feature_coupling.double_bbox_head_feauter_coupling',
     ],
     allow_failed_imports=False)
 
@@ -15,7 +15,7 @@ model = dict(
             _delete_=True,
             type='DoubleFeatureCouplingBBoxHead',
             num_convs=4,
-            num_fcs=2,
+            num_fcs=4,
             in_channels=256,
             conv_out_channels=1024,
             fc_out_channels=1024,

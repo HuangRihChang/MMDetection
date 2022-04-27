@@ -164,7 +164,7 @@ class DoubleFeatureCouplingBBoxHead(BBoxHead):
 
         self.fc_cls = nn.Linear(self.fc_out_channels, self.num_classes + 1)
         self.relu = nn.ReLU(inplace=True)
-        self.feature_coupling_block = FeatureCouplingBlock(1024, 1024, 7)
+        self.feature_coupling_block = FeatureCouplingBlock(self.fc_out_channels, self.conv_out_channels, 7)
 
     def _add_conv_branch(self):
         """Add the fc branch which consists of a sequential of conv layers."""
@@ -189,18 +189,13 @@ class DoubleFeatureCouplingBBoxHead(BBoxHead):
         return branch_fcs
 
     def forward(self, x_cls, x_reg):
-        # conv head
+        x_fc = x_cls.view(x_cls.size(0), -1)
         x_conv = self.res_block(x_reg)
 
-        for conv in self.conv_branch:
+        for conv, fc in zip(self.conv_branch, self.fc_branch):
             x_conv = conv(x_conv)
-
-        # fc head
-        x_fc = x_cls.view(x_cls.size(0), -1)
-        for fc in self.fc_branch:
             x_fc = self.relu(fc(x_fc))
-
-        x_fc, x_conv = self.feature_coupling_block(x_fc, x_conv)
+            x_fc, x_conv = self.feature_coupling_block(x_fc, x_conv)
 
         #get output
         if self.with_avg_pool:
